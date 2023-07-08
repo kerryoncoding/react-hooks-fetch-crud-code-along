@@ -7,13 +7,13 @@ function ItemForm({onAddItem}) {
 
   function handleFormSubmit(e) {
     e.preventDefault()
-    console.log("submitted")
-    console.log(e.target.name.value)
-    console.log(e.target.category.value)
+    // console.log("submitted")
+    // console.log(e.target.name.value)
+    console.log(name, category)
     
     const itemData = {
-      name: e.target.name.value,
-      category: e.target.category.value,
+      name: name,
+      category: category,
       isInCart: false,
     };
     console.log(itemData);
@@ -28,7 +28,7 @@ function ItemForm({onAddItem}) {
     })
     .then(resp => resp.json())
     //this is prop passing to shoppingList
-    .then(data => onAddItem(data))
+    .then(itemData => onAddItem(itemData))
   }
   
 

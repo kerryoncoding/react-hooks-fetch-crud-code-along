@@ -35,7 +35,7 @@ function ShoppingList() {
       if (item.id === updatedItem.id) {
         return updatedItem;
       } else {
-        return item
+        return item;
       }
     })
     //update state of items
@@ -69,7 +69,12 @@ function ShoppingList() {
       />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
-          <Item key={item.id} item={item}  onUpdateItem={handleUpdateItem} onDeletedItem={handleDeletedItem}/>
+          <Item 
+          key={item.id}
+          item={item}
+          onUpdateItem={handleUpdateItem} 
+          onDeletedItem={handleDeletedItem}
+          />
         ))}
       </ul>
     </div>

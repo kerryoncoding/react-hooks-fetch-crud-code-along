@@ -1,6 +1,12 @@
 {
   "items": [
     {
+      "name": "Yogurt",
+      "category": "Dairy",
+      "isInCart": false,
+      "id": 1
+    },
+    {
       "id": 2,
       "name": "Pomegranate",
       "category": "Produce",
@@ -31,10 +37,27 @@
       "isInCart": false
     },
     {
-      "name": "Yogurt",
+      "name": "anything",
       "category": "Dairy",
       "isInCart": false,
       "id": 7
+    },
+    {
+      "name": "dairy here",
+      "category": "Dairy",
+      "isInCart": false,
+      "id": 8
+    },
+    {
+      "name": "Ice Cream",
+      "category": "Dessert",
+      "isInCart": false,
+      "id": 9
+    },
+    {
+      "name": "hello",
+      "isInCart": false,
+      "id": 10
     }
   ]
 }
