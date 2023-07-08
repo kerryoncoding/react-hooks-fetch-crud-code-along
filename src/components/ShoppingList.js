@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ItemForm from "./ItemForm";
 import Filter from "./Filter";
 import Item from "./Item";
@@ -6,6 +6,42 @@ import Item from "./Item";
 function ShoppingList() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [items, setItems] = useState([]);
+
+  useEffect(( )=> {
+    // GET request - Read Data
+    fetch("http://localhost:4000/items")
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data)
+      setItems(data)
+    })
+  }, [])
+
+  if (!items){
+    return <h2>Loading...</h2>
+  }
+
+  // add newitem to state from our itemForm
+  function handleAddItem(newItem){
+    console.log("In ShoppingList: ", newItem)
+    setItems([...items, newItem])
+  }
+
+  // update item change from itemForm
+  function handleUpdateItem(updatedItem){
+    console.log("In ShoppingCart:", updatedItem)
+    //set updated items array with change
+    const updatedItems = items.map((item)=> {
+      if (item.id === updatedItem.id) {
+        return updatedItem;
+      } else {
+        return item
+      }
+    })
+    //update state of items
+    setItems(updatedItems)
+  }
+  
 
   function handleCategoryChange(category) {
     setSelectedCategory(category);
@@ -19,14 +55,14 @@ function ShoppingList() {
 
   return (
     <div className="ShoppingList">
-      <ItemForm />
+      <ItemForm onAddItem={handleAddItem}/>
       <Filter
         category={selectedCategory}
         onCategoryChange={handleCategoryChange}
       />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
-          <Item key={item.id} item={item} />
+          <Item key={item.id} item={item}  onUpdateItem={handleUpdateItem}/>
         ))}
       </ul>
     </div>
